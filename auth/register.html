@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP RAILWAY | რეგისტრაცია</title>
+    <link rel="stylesheet" href="./auth.css">
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <section class="auth-section">
+        <div class="auth-container">
+            <h2>რეგისტრაცია</h2>
+            <div id="message-box" class="message-box"></div>
+
+            <form id="register-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">სახელი*</label>
+                        <input type="text" id="firstName" name="firstName" required minlength="2"
+                            placeholder="შეიყვანეთ სახელი" autocomplete="given-name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">გვარი*</label>
+                        <input type="text" id="lastName" name="lastName" required minlength="2"
+                            placeholder="შეიყვანეთ გვარი" autocomplete="family-name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">ელ-ფოსტა*</label>
+                    <input type="email" id="email" name="email" required placeholder="შეიყვანეთ ელ-ფოსტა"
+                        autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">პაროლი*</label>
+                    <input type="password" id="password" name="password" required minlength="6"
+                        placeholder="შეიყვანეთ პაროლი" autocomplete="new-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">ტელეფონი*</label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{9,12}"
+                        placeholder="შეიყვანეთ ტელეფონის ნომერი" autocomplete="tel">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">ასაკი*</label>
+                        <input type="number" id="age" name="age" required min="18" max="120"
+                            placeholder="შეიყვანეთ ასაკი">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">სქესი*</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">აირჩიეთ სქესი</option>
+                            <option value="MALE">მამრობითი</option>
+                            <option value="FEMALE">მდედრობითი</option>
+                            <option value="OTHER">სხვა</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">მისამართი*</label>
+                    <input type="text" id="address" name="address" required minlength="5"
+                        placeholder="შეიყვანეთ მისამართი" autocomplete="street-address">
+                </div>
+
+                <div class="form-group">
+                    <label for="zipcode">საფოსტო კოდი*</label>
+                    <input type="text" id="zipcode" name="zipcode" required pattern="[0-9]{4}"
+                        placeholder="შეიყვანეთ საფოსტო კოდი" autocomplete="postal-code">
+                </div>
+
+                <button type="submit" class="auth-btn">რეგისტრაცია</button>
+            </form>
+
+            <div class="auth-links">
+                <p>უკვე გაქვთ ანგარიში? <a href="login.html">შესვლა</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="../main/auth.js"></script>
+    <script src="./register.js"></script>
+</body>
+
+</html>

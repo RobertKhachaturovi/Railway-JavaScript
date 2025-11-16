@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <button class="burger-menu-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/2976/2976215.png" alt="menu" width="24" height="24">
+    </button>
+    <nav>
+        <button class="close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="../main/index.html" class="main-link">მთავარი</a>
+        <button onclick="getAll()">ყველა</button>
+    </nav>
+
+    <div class="restaurant-name">
+        <h1>შეუკვეთე – მიირთვი – იმგზავრე</h1>
+        <p>მიირთვით თქვენი საყვარელი კერძები პირდაპირ მატარებელში — შეუკვეთედ მარტივად და იმგზავრეთ კომფორტულად.</p>
+    </div>
+
+    <!-- ფილტრაციის ღილაკი და პანელი -->
+    <button id="filterToggleBtn" class="filter-toggle-btn">☰ ფილტრი</button>
+    <div id="filterPanel" class="filter-panel">
+        <button id="closeFilterBtn" class="close-filter-btn">✕</button>
+        <h3>ფილტრი</h3>
+        <label><input type="checkbox" id="vegetarian" /> ვეგეტარიანული</label><br />
+        <label><input type="checkbox" id="nuts" /> შეიცავს კაკალს</label><br />
+        <label>
+            სიმწარე:
+            <select id="spiciness">
+                <option value="">ნებისმიერი</option>
+                <option value="0">🌶️ 0</option>
+                <option value="1">🌶️ 1</option>
+                <option value="2">🌶️ 2</option>
+                <option value="3">🌶️ 3</option>
+                <option value="4">🌶️ 4</option>
+            </select>
+        </label><br />
+        <button onclick="filter()">გაფილტრე</button>
+    </div>
+
+    <!-- პროდუქტის ბარათები -->
+    <section></section>
+
+    <!-- კალათა -->
+    <div id="cart">
+        <a href="cart.html" id="cart-button">🛒</a>
+        <ul id="cart-items" class="hidden"></ul>
+    </div>
+
+    <!-- პროდუქტის მოდალი -->
+    <div id="productModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalImage" src="" alt="Product" style="width: 100px;" />
+            <h2 id="modalName"></h2>
+            <p id="modalMessage"></p>
+
+            <label for="deliveryTime">მოწოდების დრო:</label>
+            <input type="time" id="deliveryTime" />
+
+            <script>
+                const deliveryTimeInput = document.getElementById("deliveryTime");
+
+                // როცა დრო იცვლება — შეინახე
+                deliveryTimeInput.addEventListener("change", function () {
+                    const timeValue = deliveryTimeInput.value;
+                    localStorage.setItem("deliveryTime", timeValue);
+                });
+            </script>
+
+
+            <label id="chestDelivery"></label>
+            <p id="finalPrice"></p>
+
+            <button id="confirmOrderBtn">დადასტურება</button>
+        </div>
+    </div>
+
+    <!-- გადახდის მოდალი -->
+    <div id="paymentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closePaymentModal" class="close">&times;</span>
+            <h2>გადახდა</h2>
+
+            <label for="cardNumber">ბარათის ნომერი:</label>
+            <input type="tel" id="cardNumber" maxlength="19" placeholder="0000 0000 0000 0000" />
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="cardExpiry">ვადა (MM/YY):</label>
+                    <input type="text" id="cardExpiry" maxlength="4" placeholder="MM/YY" />
+                </div>
+                <div class="column">
+                    <label for="cardCVC">CVC:</label>
+                    <input type="tel" id="cardCVC" maxlength="3" placeholder="123" />
+                </div>
+            </div>
+
+            <label for="cardHolder">ბარათის მფლობელი:</label>
+            <input type="text" id="cardHolder" maxlength="50" placeholder="სახელი გვარი" />
+
+            <button id="submitPaymentBtn">გადახდა</button>
+            <script>
+                document.getElementById('submitPaymentBtn').addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const cardNumberInput = document.getElementById('cardNumber');
+                    const cardExpiryInput = document.getElementById('cardExpiry');
+                    const cardCVCInput = document.getElementById('cardCVC');
+                    const cardHolderInput = document.getElementById('cardHolder');
+
+
+                    const cardNumber = cardNumberInput.value.replace(/\s/g, '').trim();
+                    const cardExpiry = cardExpiryInput.value.trim();
+                    const cardCVC = cardCVCInput.value.trim();
+                    const cardHolder = cardHolderInput.value.trim();
+
+                    const isCardNumberValid = /^\d{16}$/.test(cardNumber);
+                    const isExpiryValid = /^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(cardExpiry);
+                    const isCVCValid = /^\d{3}$/.test(cardCVC);
+                    const isHolderValid = cardHolder.length > 3;
+
+                    function toggleInvalid(input, isValid) {
+                        input.style.border = isValid ? '2px solid #ccc' : '2px solid red';
+                    }
+
+                    toggleInvalid(cardNumberInput, isCardNumberValid);
+                    toggleInvalid(cardExpiryInput, isExpiryValid);
+                    toggleInvalid(cardCVCInput, isCVCValid);
+                    toggleInvalid(cardHolderInput, isHolderValid);
+
+                    if (isCardNumberValid && isExpiryValid && isCVCValid && isHolderValid) {
+                        window.location.href = './cart.html';
+                    } else {
+                        alert("გთხოვ შეავსო ყველა ველი სწორად.");
+                    }
+                });
+
+                document.getElementById('cardNumber').addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 16) value = value.slice(0, 16);
+                    let formatted = value.match(/.{1,4}/g)?.join(' ') || '';
+                    e.target.value = formatted;
+                });
+
+
+                document.getElementById('cardExpiry').addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 4) value = value.slice(0, 4);
+                    if (value.length >= 4) {
+                        value = value.slice(0, 2) + '/' + value.slice(2);
+                    }
+                    e.target.value = value;
+                });
+            </script>
+
+            <style>
+                input {
+                    border: 2px solid #ccc;
+                    outline: none;
+                    padding: 8px;
+                    border-radius: 6px;
+                    transition: border 0.3s;
+                }
+
+                input:focus {
+                    border-color: #00b4d8;
+                }
+            </style>
+
+        </div>
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

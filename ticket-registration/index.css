@@ -1,0 +1,1518 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+footer {
+    width: 100%;
+    height: 200px;
+    background-color: rgb(244, 245, 251);
+    position: relative;
+}
+
+footer::after {
+    content: '';
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1.2px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
+}
+
+.footer-line-text {
+    position: relative;
+    padding-top: 150px;
+    padding-left: 70px;
+    color: #333;
+    font-size: 16px;
+}
+
+.footer-line-text span {
+    color: rgb(69, 47, 243);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 30px 32px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header.scrolled {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+[data-theme="dark"] header {
+    background-color: transparent;
+}
+
+[data-theme="dark"] header.scrolled {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background-color: transparent;
+}
+
+[data-theme="dark"] .nav-bar {
+    background-color: transparent;
+}
+
+.logo-desktop img {
+    display: block;
+    height: 55px;
+}
+
+.logo-desktop a {
+    cursor: default;
+}
+
+.btn {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background: transparent;
+    border: 2px solid rgb(56, 58, 181);
+    background-color: rgb(40, 63, 191);
+    width: 320px;
+    height: 50px;
+    color: #00aaff;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    transition: color 0.3s, border-color 0.3s;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn::before {
+    content: "";
+    background-color: rgb(69, 89, 202);
+    position: absolute;
+    inset: 0;
+    transform: scale(0, 1);
+    transform-origin: center;
+    transition: all 1s;
+    z-index: -1;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    color: white;
+    border-color: transparent;
+}
+
+.btn:hover::before {
+    transform: scale(1, 1);
+}
+
+.travel-note-section {
+    background: linear-gradient(to right,
+            rgb(219, 232, 247),
+            rgb(230, 239, 249),
+            rgb(223, 230, 245),
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 1));
+    width: 100%;
+    height: 500px;
+    padding: 150px 80px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.travel-note-content {
+    max-width: 700px;
+}
+
+.travel-note-content h2 {
+    width: 100%;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.travel-note-content p {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #3a3a3a;
+}
+
+.logo-mobile {
+    display: none;
+}
+
+.logo-desktop {
+    display: block;
+}
+
+.logo-mobile img {
+    height: 55px;
+}
+
+.logo-mobile a {
+    cursor: default;
+}
+
+.container h2 {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 110px;
+    gap: 30px;
+    margin-top: 80px;
+}
+
+.container {
+    max-width: 80%;
+    background-color: white;
+    padding: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container,
+    .invoice-box {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .invoice-box {
+        margin-top: 20px;
+    }
+}
+
+.invoice-box {
+
+    text-align: center;
+    background: rgb(244, 245, 253);
+    padding: 15px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: auto;
+}
+
+#ticketDetails {
+    max-width: 1000px;
+    padding: 40px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
+}
+
+#ticketDetails h2 {
+    font-size: 24px;
+    color: #2f59d6;
+    margin-bottom: 20px;
+}
+
+#ticketDetails p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.solid {
+    margin-top: 40px;
+    border-bottom: 2px dashed rgb(213, 218, 240);
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.input-row input {
+    flex: 1;
+    max-width: 430px;
+    width: 100%;
+    padding: 15px 18px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 40px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-row input:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.input-row input::placeholder {
+    color: #999;
+}
+
+.container-h2 h2 {
+    font-size: 22px;
+    margin-top: 50px;
+}
+
+.passenger-row {
+    margin-top: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.passenger-row input {
+    padding: 15px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1;
+    margin: 0 !important;
+    min-width: 120px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .passenger-row input {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border-color: #444;
+}
+
+[data-theme="dark"] .passenger-row input:focus {
+    border-color: var(--active-bg);
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+}
+
+[data-theme="dark"] .passenger-row input::placeholder {
+    color: #888;
+}
+
+.select-seats {
+    padding: 20px;
+}
+
+.passenger-row button {
+    padding: 14px 35px;
+    font-size: 1rem;
+    border: none;
+    background-color: rgb(40, 63, 191);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.passenger-row button:hover {
+    background-color: #0056b3;
+}
+
+.container-h3 h3 {
+    margin-top: 50px;
+}
+
+.passenger-subtitle {
+    font-size: 22px;
+}
+
+#seatModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    height: 250px;
+    border: 1px solid black;
+    width: 35%;
+    position: relative;
+    top: 50%;
+    border-radius: 10px;
+    transform: translateY(-50%);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.border-bottom-solid {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(222, 226, 230);
+    margin-top: 50px;
+}
+
+.train-image {
+    background-color: rgb(244, 245, 250);
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 90%;
+    height: 80px;
+
+}
+
+.wagon {
+    position: relative;
+    text-align: center;
+}
+
+.wagon img {
+    height: 40px;
+    width: 140px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.wagon img:hover {
+    opacity: 1;
+}
+
+.caption {
+    position: absolute;
+    bottom: -52px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 16px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.wagon:hover .caption {
+    opacity: 1;
+}
+
+.select-wagon {
+    text-align: center;
+    font-size: 10px;
+    margin-top: 15px;
+}
+
+.baggage-section {
+    display: flex;
+    gap: 30px;
+    margin: 20px;
+}
+
+.item h3 {
+    margin-top: 0;
+}
+
+.baggage-section {
+    display: flex;
+
+    gap: 15px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.item-image {
+    width: 55px;
+    height: 60px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+
+}
+
+.item-text {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.included {
+    margin-top: 10px;
+
+}
+
+.included-1 {
+    margin-top: 25px;
+}
+
+.item-text-1 {
+    margin-top: 30px;
+}
+
+.item-text {
+    margin-top: 20px;
+}
+
+.not-included {
+    margin-top: 10px;
+}
+
+
+.invoice-header {
+    color: #0033cc;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.amount-box {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 10px;
+
+    margin-bottom: 20px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.checkbox {
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.amount-boxs button {
+    background-color: #0033cc;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0022aa;
+}
+
+
+.baggage-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    padding-top: 60px;
+}
+
+.baggage-modal-content {
+    background-color: #fff;
+    margin: 4% auto;
+    height: 700px;
+    border: 1px solid #888;
+    width: 35%;
+    max-width: 600px;
+    position: relative;
+
+}
+
+.baggage-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+}
+
+.baggage-close:hover,
+.baggage-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.baggage-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.baggage-image {
+    text-align: center;
+}
+
+.baggage-image img {
+    width: 80%;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.baggage-caption {
+    font-size: 14px;
+    color: #333;
+}
+
+.baggage-select {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.baggage-select h2 {
+    font-size: 18px;
+    color: #0033cc;
+}
+
+.seats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.columns {
+    display: flex;
+    gap: 10px;
+}
+
+.seat.selected {
+    background-color: #FF6347;
+    color: white;
+}
+
+.train-images {
+    background-color: rgb(244, 245, 250);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+    height: 60px;
+}
+
+.new-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    margin-top: 83px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.train-selection {
+    width: 100%;
+    height: 30vh;
+    padding: 65px;
+    background-color: rgb(40, 63, 191);
+    margin-top: 115px;
+}
+
+.train-selection h2 {
+    font-size: 21px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.new-modal-content {
+    background-color: white;
+    padding: 35px;
+    border: 1px solid white;
+    width: 80%;
+
+    margin: 32px auto;
+    max-width: 500px;
+    border-radius: 8px;
+    height: 80vh;
+    position: relative;
+}
+
+.new-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.new-close:hover,
+.new-close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.highlighted-wagon {
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.wagon {
+    display: inline-block;
+
+    cursor: pointer;
+}
+
+.wagon img {
+    width: 120px;
+    height: auto;
+    display: block;
+}
+
+.caption {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.seat {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.occupied-seat {
+    background-color: #f44336;
+    color: white;
+}
+
+.available-seat {
+    background-color: #4caf50;
+    color: white;
+}
+
+#selectedWagon {
+    display: flex;
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    justify-content: center;
+
+}
+
+.seat-number {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    display: inline-block;
+}
+
+/* 468px - 576px✅ */
+@media (min-width: 468px) and (max-width: 576px) {
+    #ticketDetails {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .baggage-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .passenger-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .passenger-row input {
+        width: 100%;
+        display: flex;
+        gap: 50px;
+    }
+
+    .passenger-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .passenger-row button {
+        width: 100%;
+    }
+}
+
+/* 576px - 767px✅ */
+@media (min-width: 576px) and (max-width: 767px) {
+    #ticketDetails {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .baggage-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .passenger-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .passenger-row input {
+        width: 100%;
+        display: flex;
+        gap: 50px;
+    }
+
+    .passenger-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .passenger-row button {
+        width: 100%;
+    }
+
+    .input-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+/* 768px - 991px✅ */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .baggage-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .passenger-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .passenger-row input {
+        width: 100%;
+        display: flex;
+        gap: 50px;
+    }
+
+    .passenger-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .passenger-row button {
+        width: 100%;
+    }
+}
+
+
+/* 992px - 1099px */
+@media (min-width: 992px) and (max-width: 1099px) {}
+
+/* 1100px და ზემოთ */
+@media (min-width: 1100px) {}
+
+.seats-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+    max-width: 300px;
+    margin-top: 30px;
+    margin-inline: auto;
+
+}
+
+.seats {
+    background-color: #2ecc71;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.language-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff;
+    color: #000;
+    padding: 0 15px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    font-size: 16px;
+}
+
+.language-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.language-btn i {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .header-buttons {
+        gap: 8px;
+    }
+
+    .language-btn {
+        height: 40px;
+        min-width: 100px;
+        font-size: 14px;
+        padding: 0 12px;
+    }
+
+    .language-btn i {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-buttons {
+        gap: 6px;
+    }
+
+    .language-btn {
+        height: 35px;
+        min-width: 90px;
+        font-size: 12px;
+        padding: 0 10px;
+    }
+
+    .language-btn i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header-buttons {
+        gap: 5px;
+    }
+
+    .language-btn {
+        height: 30px;
+        min-width: 80px;
+        font-size: 12px;
+        padding: 0 8px;
+    }
+
+    .language-btn i {
+        font-size: 12px;
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 16px;
+    animation: pulse 1.5s infinite;
+    cursor: wait;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    background-color: #fde8e8;
+    border-radius: 4px;
+    margin: 10px 0;
+    cursor: not-allowed;
+}
+
+#ticketDetails.loading {
+    cursor: wait;
+}
+
+#ticketDetails.error {
+    cursor: not-allowed;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.phone-input-container {
+    position: relative;
+    flex: 1;
+}
+
+.phone-number {
+    width: 100%;
+    padding: 12px 12px 12px 60px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.phone-number:focus {
+    border-color: #2ecc71;
+    outline: none;
+}
+
+.country-code {
+    position: absolute;
+    left: 10px;
+    top: 70% !important;
+    transform: translateY(-50%);
+    border: none;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") right 0px center / 12px no-repeat transparent;
+    color: rgb(153, 153, 153);
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1;
+    padding-right: 20px;
+    appearance: none;
+}
+
+.country-code:hover {
+    color: #666;
+}
+
+.country-code:focus {
+    outline: none;
+}
+
+@media (max-width: 576px) {
+    .phone-input-container {
+        max-width: 100%;
+    }
+
+    .country-code {
+        font-size: 0.9rem;
+    }
+}
+
+.currency-switcher {
+    display: flex;
+    gap: 4px;
+    margin-left: 10px;
+}
+
+.currency-btn {
+    padding: 4px 4px;
+    border: 1px solid #0033cc;
+    background: white;
+    color: #0033cc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    min-width: 32px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.currency-btn:hover {
+    background: #f0f4ff;
+    transform: translateY(-1px);
+}
+
+.currency-btn.active {
+    background: #0033cc;
+    color: white;
+}
+
+.currency-btn:active {
+    transform: translateY(0);
+}
+
+/* 475px-მდე */
+@media (max-width: 475px) {
+    .wrapper {
+        padding: 20px;
+        margin-top: 60px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .invoice-box {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #ticketDetails {
+        padding: 20px;
+        flex-direction: column;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-row input {
+        width: 100%;
+    }
+
+    .passenger-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .passenger-row input {
+        width: 100%;
+    }
+
+    .passenger-row button {
+        width: 100%;
+    }
+
+    .baggage-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .item {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+
+    .seats-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+
+    .seat {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .train-selection {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .wagon {
+        width: 100%;
+    }
+
+    .wagon img {
+        width: 100%;
+        height: auto;
+    }
+
+    .caption {
+        font-size: 14px;
+    }
+
+    .currency-switcher {
+
+        gap: 10px;
+    }
+
+    .currency-btn {
+        width: 100%;
+    }
+}
+
+/* Dark mode styles */
+:root {
+    --bg-color: #f5f6fa;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --border-color: #ddd;
+    --hover-bg: #f8f9fa;
+    --active-bg: #3498db;
+    --active-text: #ffffff;
+    --negative-bg: #dc3545;
+    --negative-text: #ffffff;
+    --notification-success: #2ecc71;
+    --notification-error: #e74c3c;
+    --section-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ddd;
+    --modal-bg: #ffffff;
+    --footer-bg: rgb(244, 245, 251);
+    --train-selection-bg: rgb(40, 63, 191);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --border-color: #444;
+    --hover-bg: #2c2c2c;
+    --active-bg: #2980b9;
+    --active-text: #ffffff;
+    --negative-bg: #c82333;
+    --negative-text: #ffffff;
+    --notification-success: #27ae60;
+    --notification-error: #c0392b;
+    --section-bg: #1e1e1e;
+    --input-bg: #2c2c2c;
+    --input-border: #444;
+    --modal-bg: #1e1e1e;
+    --footer-bg: #1a1a1a;
+    --train-selection-bg: #2c3e50;
+    --heading-color: #ffffff;
+    --subtext-color: #b0b0b0;
+    --link-color: #64b5f6;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] .invoice-header,
+[data-theme="dark"] .caption {
+    color: var(--heading-color);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] .footer-line-text,
+[data-theme="dark"] .select-wagon h2,
+[data-theme="dark"] .item-text p {
+    color: var(--subtext-color);
+}
+
+[data-theme="dark"] .btn {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+    border-color: var(--active-bg);
+}
+
+[data-theme="dark"] .btn:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--hover-bg);
+}
+
+[data-theme="dark"] input::placeholder {
+    color: var(--subtext-color);
+}
+
+[data-theme="dark"] .train-selection h2 {
+    color: var(--heading-color);
+}
+
+[data-theme="dark"] .amount-box {
+    background-color: var(--card-bg);
+    color: var(--heading-color);
+}
+
+[data-theme="dark"] .checkbox label {
+    color: var(--subtext-color);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.nav-bar {
+    background-color: var(--card-bg);
+}
+
+.logout-btn {
+    background-color: var(--negative-bg);
+    color: var(--negative-text);
+}
+
+.ticket-form {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.form-group label {
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.submit-btn {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    border: solid black !important;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.dark-mode-toggle:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-mode-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover i {
+    transform: rotate(30deg);
+}
+
+.train-selection {
+    background-color: var(--train-selection-bg);
+}
+
+.container {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.invoice-box {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.input-row input,
+.phone-number {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
+}
+
+[data-theme="dark"] .input-row input,
+[data-theme="dark"] .phone-number {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border-color: #444;
+}
+
+[data-theme="dark"] .input-row input:focus,
+[data-theme="dark"] .phone-number:focus {
+    border-color: var(--active-bg);
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.3);
+}
+
+[data-theme="dark"] .input-row input::placeholder,
+[data-theme="dark"] .phone-number::placeholder {
+    color: #888;
+}
+
+[data-theme="dark"] .country-code {
+    color: #888;
+    background-color: #2c2c2c;
+}
+
+[data-theme="dark"] .country-code:hover {
+    color: #aaa;
+}
+
+.modal-content,
+.new-modal-content {
+    background-color: var(--modal-bg);
+    color: var(--text-color);
+}
+
+footer {
+    background-color: var(--footer-bg);
+}
+
+.footer-line-text {
+    color: var(--text-color);
+}
+
+.item {
+    background-color: var(--card-bg);
+
+}
+
+.item-image {
+    background-color: var(--input-bg);
+    border-color: var(--border-color);
+}
+
+.amount-box {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.currency-btn {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.currency-btn.active {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+}
+
+.seat {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.seat.selected {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+}
+
+.occupied-seat {
+    background-color: var(--negative-bg);
+    color: var(--negative-text);
+}
+
+.available-seat {
+    background-color: var(--notification-success);
+    color: var(--active-text);
+}
+
+.train-image {
+    background-color: var(--input-bg);
+}
+
+.wagon img {
+    filter: brightness(0.8);
+}
+
+[data-theme="dark"] .wagon img {
+    filter: brightness(0.6);
+}

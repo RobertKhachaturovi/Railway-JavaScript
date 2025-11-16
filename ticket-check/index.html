@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP RAILWAY | Ticket Check</title>
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <!-- Desktop logo -->
+                <a href="../main/index.html" class="logo-desktop">
+                    <img src="../main/image/logo.png" alt="desktop logo">
+                </a>
+            </div>
+            <div>
+                <div class="right-icon">
+                    <div class="header-buttons">
+
+                        <a href="../ticket-check/index.html">
+                            <button class="btn">
+                                <span>ბილეთის შემოწმება/დაბრუნება</span>
+                                <span></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="ticket-check-wrapper">
+        <div class="ticket-number">
+            <label for="ticket-id">ბილეთის ნომერი</label>
+            <div class="input-button-container">
+                <input type="text" id="ticket-id" placeholder="შეიყვანეთ ბილეთის ნომერი">
+                <button>შემოწმება</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

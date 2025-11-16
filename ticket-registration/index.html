@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEP RAILWAY | MyLine</title>
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="../ticket-check/index.html" class="logo-desktop">
+                    <img src="../main/image/logo.png" alt="desktop logo" />
+                </a>
+                <a href="../ticket-check/index.html" class="logo-mobile">
+                    <img src="../main/image/favicon.png" alt="mobile logo" />
+                </a>
+            </div>
+
+            <div class="right-icon">
+                <div class="header-buttons">
+                    <a href="../ticket-check/index.html">
+                        <button class="btn">
+                            <span>ბილეთის შემოწმება/დაბრუნება</span>
+                            <span></span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="train-selection">
+        <h2>აირჩიეთ თქვენთვის სასურველი მატარებელი</h2>
+    </section>
+    <div class="wrapper">
+        <div class="container">
+            <h2>შეიყვანეთ თქვენი მონაცემები</h2>
+            <div id="ticketDetails"></div>
+            <div class="solid"></div>
+
+            <div class="container-h2">
+                <h2>საკონტაქტო ინფორმაცია</h2>
+            </div>
+            <div class="input-row">
+                <input type="email" placeholder="ელ-ფოსტა" required />
+                <div class="phone-input-container">
+                    <input type="tel" class="phone-number" maxlength="11" inputmode="numeric"
+                        placeholder="ტელეფონის ნომერი" required />
+                </div>
+            </div>
+
+            <div class="container-h3">
+                <h3>მგზავრების ინფორმაცია</h3>
+            </div>
+            <div id="passenger-container"></div>
+
+            <div class="baggage-section">
+                <div class="item">
+                    <img src="./image/pbag1.svg" alt="Personal Item" class="item-image" />
+                    <div class="item-text">
+                        <h3>Personal Item</h3>
+                        <p>Purse, small backpack, briefcase</p>
+                        <p class="included">
+                            <img src="./image/over-check.svg" alt="Included" class="icon-image" />
+                            Included
+                        </p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./image/pbag2.svg" alt="Carry-on bag" class="item-image" />
+                    <div class="item-text-1">
+                        <h3>Carry-on bag</h3>
+                        <p>Fits in overhead bin or under the seat</p>
+                        <p class="included-1">
+                            <img src="./image/over-check.svg" alt="Included" class="icon-image" />
+                            Included
+                        </p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./image/pbag3 (1).svg" alt="Checked Bags" class="item-image" />
+                    <div class="item-text">
+                        <h3>Checked Bags</h3>
+                        <p>Large Bag, Purse, small backpack</p>
+                        <p class="not-included">
+                            <img src="./image/cross.svg" alt="Not Included" class="icon-image" />
+                            Not Included
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="solid"></div>
+        </div>
+
+        <div class="invoice-box">
+            <div class="invoice-header">ინვოისი</div>
+            <div class="row">
+                <div>ადგილი</div>
+                <div>ფასი</div>
+            </div>
+            <div class="amount-box">
+                <span>სულ:</span> <span id="totalAmount">0.00₾</span>
+                <div class="currency-switcher">
+                    <button class="currency-btn active" data-currency="GEL">₾</button>
+                    <button class="currency-btn" data-currency="USD">$</button>
+                    <button class="currency-btn" data-currency="EUR">€</button>
+                </div>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="agree" />
+                <label for="agree">წავიკითხე და ვეთანხმები წესებს</label>
+            </div>
+            <div class="amount-boxs">
+                <button id="paymentButton">გადახდა</button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- პირველადი მოდალი -->
+    <div id="seatModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="train-image">
+                <div class="wagon" data-wagon="1">
+                    <img src="./image/firstWagon.png" alt="1-class" />
+                    <div class="caption">|| კლასი</div>
+                </div>
+                <div class="wagon" data-wagon="2">
+                    <img src="./image/midWagon.png" alt="2-class" />
+                    <div class="caption">| მეორე კლასი</div>
+                </div>
+                <div class="wagon" data-wagon="3">
+                    <img src="./image/lastWagon.png" alt="bizness-class" />
+                    <div class="caption">ბიზნესი</div>
+                </div>
+            </div>
+            <div class="select-wagon">
+                <h2>გთხოვთ აირჩიოთ ვაგონი</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- ვაგონების ასარჩევი მოდალი -->
+    <div id="wagonModal" class="new-modal" style="display: none;">
+        <div class="new-modal-content">
+            <span class="new-close">&times;</span>
+            <div class="train-images">
+                <div class="wagon" data-wagon="1">
+                    <img src="./image/firstWagon.png" alt="1-class" />
+                    <div class="caption">პირველი კლასი</div>
+                    <p class="wagon-number"></p>
+                </div>
+                <div class="wagon" data-wagon="2">
+                    <img src="./image/midWagon.png" alt="2-class" />
+                    <div class="caption">მეორე კლასი</div>
+                    <p class="wagon-number"></p>
+                </div>
+                <div class="wagon" data-wagon="3">
+                    <img src="./image/lastWagon.png" alt="bizness-class" />
+                    <div class="caption">ბიზნესი</div>
+                    <p class="wagon-number"></p>
+                </div>
+            </div>
+
+            <div id="seatContainer"></div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="./index.js" defer></script>
+</body>
+
+</html>

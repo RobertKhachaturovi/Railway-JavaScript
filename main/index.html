@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP RAILWAY | MyLine</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="icon" href="./image/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <!-- Desktop logo -->
+                <a href="../ticket-check/index.html" class="logo-desktop">
+                    <img src="./image/logo.png" alt="desktop logo">
+                </a>
+                <!-- Mobile logo -->
+                <a href="../ticket-check/index.html" class="logo-mobile">
+                    <img src="./image/favicon.png" alt="mobile logo">
+                </a>
+            </div>
+            <div class="header-buttons">
+                <button id="languageSwitch" class="btn">
+                    <i class="fas fa-globe"></i>
+                    en
+                </button>
+                <a href="../ticket-check/index.html">
+                    <button class="btn">
+                        <span>ბილეთის შემოწმება/დაბრუნება</span>
+                    </button>
+                </a>
+                <a href="../aiChat/index.html">
+                    <button class="btn">
+                        <span>დახმარება</span>
+                    </button>
+                </a>
+                <button id="burgerMenuBtn" class="burger-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Burger Menu -->
+    <div id="burgerMenu" class="burger-menu">
+        <div class="burger-menu-content">
+            <button id="closeBurgerMenu" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="burger-menu-items">
+                <button id="darkModeToggle" class="burger-menu-item">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <div class="burger-menu-section main-menu-section">
+                    <h3>მთავარი</h3>
+                    <a href="../ticket-check/index.html">
+                        <button class="btn">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>ბილეთის შემოწმება/დაბრუნება</span>
+                        </button>
+                    </a>
+                    <a href="../aiChat/index.html">
+                        <button class="btn">
+                            <i class="fas fa-question-circle"></i>
+                            <span>დახმარება</span>
+                        </button>
+                    </a>
+                    <button id="languageSwitchBurger" class="btn">
+                        <i class="fas fa-globe"></i>
+                        <span>en</span>
+                    </button>
+                </div>
+
+                <div class="burger-menu-section">
+                    <h3>სერვისები</h3>
+                    <a href="./see-map/index.html">
+                        <button class="btn">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>რუკა</span>
+                        </button>
+                    </a>
+                    <a href="../restaurant/index.html">
+                        <button class="btn">
+                            <i class="fas fa-utensils"></i>
+                            <span>რესტორანი</span>
+                        </button>
+                    </a>
+                </div>
+
+                <div class="burger-menu-section">
+                    <h3>ანგარიში</h3>
+                    <a href="./admin/index.html">
+                        <button class="btn">
+                            <i class="fas fa-user-shield"></i>
+                            <span>ინფორმაცია ჩვენს შესახებ</span>
+                        </button>
+                    </a>
+                    <a href="../profile/index.html" id="profileButton" class="profile-link">
+                        <button class="btn profile-btn">
+                            <img src="../auth/default-avatar.png" alt="Profile" class="profile-icon" id="profileIcon">
+                            <span>პროფილი</span>
+                        </button>
+                    </a>
+                    <button id="logoutButton" class="btn logout-btn" style="display: none;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>გასვლა</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="travel-note-section">
+        <div class="travel-note-content">
+            <h2>შეიძინეთ მატარებლის ბილეთები ონლაინ</h2>
+            <p>გისურვებთ ბედნიერ მგზავრობას!</p>
+        </div>
+    </section>
+    <section class="filter-section">
+        <h2 class="filter-title">დაჯავშნეთ მატარებლის ბილეთი</h2>
+
+        <div class="filter-container">
+            <div class="filter-item">
+                <select id="fromStation">
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <select id="toStation">
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <input type="date" id="travelDate">
+            </div>
+
+            <div class="filter-item">
+                <input type="number" id="guests" min="1" max="5" value="1">
+            </div>
+
+            <div class="filter-item filter-button">
+                <button id="searchButton" type="button">
+                    <p>მატარებლების <span>მოძებნა</span></p>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            const fromSelect = document.getElementById("fromStation");
+            const toSelect = document.getElementById("toStation");
+            const travelDateInput = document.getElementById("travelDate");
+
+
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            travelDateInput.min = `${yyyy}-${mm}-${dd}`;
+
+            async function loadStations() {
+                try {
+                    const response = await fetch("https://railway.stepprojects.ge/api/Station/GetAll");
+                    const stations = await response.json();
+
+                    stations.forEach(station => {
+                        const option1 = document.createElement("option");
+                        option1.value = station.id;
+                        option1.textContent = station.title;
+                        fromSelect.appendChild(option1);
+
+                        const option2 = document.createElement("option");
+                        option2.value = station.id;
+                        option2.textContent = station.title;
+                        toSelect.appendChild(option2);
+                    });
+                } catch (error) {
+                    console.error("სადგურების წამოღების შეცდომა:", error);
+                }
+            }
+
+            loadStations();
+            fromSelect.addEventListener("change", () => {
+                const selectedFrom = fromSelect.value;
+
+                for (let option of toSelect.options) {
+                    option.hidden = false;
+                }
+
+                if (selectedFrom) {
+                    const matchingOption = toSelect.querySelector(`option[value="${selectedFrom}"]`);
+                    if (matchingOption) matchingOption.hidden = true;
+
+                    if (toSelect.value === selectedFrom) {
+                        toSelect.value = "";
+                    }
+                }
+            });
+        </script>
+
+    </section>
+    <section class="ticket-info-layout">
+        <div class="ticket-image">
+            <img src="./image/trainticket (1).png" alt="მატარებლის ფოტო">
+        </div>
+
+        <style>
+            .new-line {
+                display: block;
+            }
+        </style>
+
+        <div class="ticket-text">
+            <h2>მატარებლის ბილეთები</h2>
+            <p>
+                რკინიგზის ბილეთების შესაძენად თქვენ დაგჭირდებათ თითოეული
+                <span class="new-line">მგზავრის პირადი ნომერი.
+                    გთხოვთ მოამზადოთ ეს ინფორმაცია</span>
+                <span class="new-line">წინასწარ.</span>
+            </p>
+
+            <div class="ticket-points">
+                <div class="ticket-column">
+                    <ul>
+                        <li class="translatable">
+                            <img src="./image/unoffer.png" alt="შეთავაზება" class="icon">
+                            <span class="translation-key" data-key="unlimited_offers">შეუზღუდავი შეთავაზებები</span>
+                        </li>
+                        <li class="translatable">
+                            <img src="./image/secure100.png" alt="მხარდაჭერა" class="icon">
+                            <span class="translation-key" data-key="secure_100">100% უსაფრთხო</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ticket-column">
+                    <ul>
+                        <li class="translatable">
+                            <img src="./image/suppor24.png" alt="უსაფრთხოება" class="icon">
+                            <span class="translation-key" data-key="support_24_7">24X7 მხარდაჭერა</span>
+                        </li>
+                        <li class="translatable">
+                            <img src="./image/truspay.png" alt="გადახდა" class="icon">
+                            <span class="translation-key" data-key="secure_payment">100% უსაფრთხო გადახდა</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </section>
+
+
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <h3></h3>
+    <script src="./auth.js"></script>
+    <script src="./script.js"></script>
+    <script src="example-api.js"></script>
+    <script>
+        // Burger Menu Functionality
+        const burgerMenuBtn = document.getElementById('burgerMenuBtn');
+        const burgerMenu = document.getElementById('burgerMenu');
+        const closeBurgerMenu = document.getElementById('closeBurgerMenu');
+
+        burgerMenuBtn.addEventListener('click', () => {
+            burgerMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBurgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close burger menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!burgerMenu.contains(e.target) && !burgerMenuBtn.contains(e.target)) {
+                burgerMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Authentication check
+        document.addEventListener('DOMContentLoaded', async function () {
+            const logoutButton = document.getElementById('logoutButton');
+            if (logoutButton) {
+                logoutButton.style.display = 'inline-block';
+                logoutButton.addEventListener('click', function () {
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('refreshToken');
+                    window.location.reload();
+                });
+            }
+        });
+
+        // დავამატოთ ავთენტიფიკაციის შემოწმება ძიების ღილაკზე
+        document.getElementById('searchButton').addEventListener('click', function () {
+            if (!isAuthenticated()) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+            // აქ დაამატეთ ძიების ლოგიკა
+        });
+    </script>
+</body>
+
+</html>

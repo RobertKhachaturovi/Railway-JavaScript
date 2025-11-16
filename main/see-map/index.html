@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>მარშრუტის რუკა</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <!-- Desktop logo -->
+                <a href="../../main/index.html" class="logo-desktop">
+                    <img src="../../main/image/logo.png" alt="desktop logo">
+                </a>
+
+            </div>
+            <div>
+                <div class="right-icon">
+                    <div class="header-buttons">
+                        <a href="../../ticket-check/index.html">
+                            <button class="btn">
+                                <span>ბილეთის შემოწმება/დაბრუნება</span>
+                                <span></span>
+                            </button>
+                        </a>
+                        <a href="../../main/index.html" class="home-link">
+                            <button class="btn home-btn">
+                                <i class="fas fa-home"></i>
+                                <span>მთავარი</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>მარშრუტის რუკა</h1>
+
+        <div class="selectors">
+            <select id="from">
+                <option value="">აირჩიე საიდან</option>
+                <option value="batumi">ბათუმი</option>
+                <option value="tbilisi">თბილისი</option>
+                <option value="poti">ფოთი</option>
+            </select>
+
+            <select id="to">
+                <option value="">აირჩიე სად</option>
+                <option value="batumi">ბათუმი</option>
+                <option value="tbilisi">თბილისი</option>
+                <option value="poti">ფოთი</option>
+            </select>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cities = {
+                batumi: [41.6423, 41.6339],
+                tbilisi: [41.7151, 44.8271],
+                poti: [42.1650, 41.6781]
+            };
+
+            const map = L.map('map').setView([41.8, 43.5], 7);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            let polyline;
+            let markers = [];
+
+            function drawRoute(fromCity, toCity) {
+                if (polyline) {
+                    map.removeLayer(polyline);
+                }
+
+                markers.forEach(marker => map.removeLayer(marker));
+                markers = [];
+
+                const fromCoords = cities[fromCity];
+                const toCoords = cities[toCity];
+
+                if (fromCoords && toCoords && fromCity !== toCity) {
+                    polyline = L.polyline([fromCoords, toCoords], {
+                        color: 'blue',
+                        weight: 5
+                    }).addTo(map);
+
+                    const fromMarker = L.marker(fromCoords).addTo(map).bindPopup("საიდან: " + fromCity);
+                    const toMarker = L.marker(toCoords).addTo(map).bindPopup("სად: " + toCity);
+
+                    markers.push(fromMarker, toMarker);
+                    map.fitBounds(polyline.getBounds());
+                }
+            }
+
+            document.getElementById('from').addEventListener('change', () => {
+                const from = document.getElementById('from').value;
+                const to = document.getElementById('to').value;
+                drawRoute(from, to);
+            });
+
+            document.getElementById('to').addEventListener('change', () => {
+                const from = document.getElementById('from').value;
+                const to = document.getElementById('to').value;
+                drawRoute(from, to);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Dark mode styles */
+:root {
+    --bg-color: #f5f6fa;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --border-color: #ddd;
+    --hover-bg: #f8f9fa;
+    --active-bg: #3498db;
+    --active-text: #ffffff;
+    --negative-bg: #dc3545;
+    --negative-text: #ffffff;
+    --notification-success: #2ecc71;
+    --notification-error: #e74c3c;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --border-color: #444;
+    --hover-bg: #2c2c2c;
+    --active-bg: #2980b9;
+    --active-text: #ffffff;
+    --negative-bg: #c82333;
+    --negative-text: #ffffff;
+    --notification-success: #27ae60;
+    --notification-error: #c0392b;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.header {
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+}
+
+.logo img {
+    height: 40px;
+}
+
+.logo-mobile {
+    display: none;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-color);
+}
+
+.admin-name {
+    font-weight: 500;
+}
+
+.logout-btn {
+    background-color: var(--negative-bg);
+    color: var(--negative-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: var(--negative-bg);
+}
+
+.admin-container {
+    display: flex;
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    padding: 2rem 0;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.3s;
+    text-align: left;
+    width: 100%;
+}
+
+.nav-item i {
+    width: 20px;
+}
+
+.nav-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.nav-item.active {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.section {
+    display: none;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.section.active {
+    display: block;
+}
+
+.section h2 {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* დაკავშირების ინფორმაციების სტილები */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-card {
+    background-color: var(--hover-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.info-card h3 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.info-card p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.edit-btn {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: var(--active-bg);
+}
+
+/* შეფასებების სექციის სტილები */
+.ratings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rating-card {
+    background-color: var(--hover-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--active-bg);
+}
+
+.rating-card.negative {
+    border-left: 4px solid var(--negative-bg);
+}
+
+.negative-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--negative-bg);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.negative-rating i {
+    font-size: 1.5rem;
+}
+
+.rating-card.negative .rating-meta {
+    color: var(--negative-bg);
+}
+
+.rating-card.negative .delete-rating-btn {
+    color: var(--negative-bg);
+}
+
+.rating-card.negative .delete-rating-btn:hover {
+    color: var(--negative-text);
+}
+
+.rating-stars {
+    margin-bottom: 1rem;
+}
+
+.star {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
+}
+
+.star.filled {
+    color: var(--active-bg);
+}
+
+.rating-comment {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.rating-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.rating-date {
+    color: var(--text-color);
+}
+
+.delete-rating-btn {
+    background: none;
+    border: none;
+    color: var(--negative-bg);
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.delete-rating-btn:hover {
+    color: var(--negative-text);
+}
+
+.delete-rating-btn i {
+    font-size: 1.1rem;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--text-color);
+    padding: 2rem;
+    background-color: var(--hover-bg);
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+/* პარამეტრების სექციის სტილები */
+.settings-form {
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.save-btn {
+    background-color: var(--notification-success);
+    color: var(--active-text);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+    background-color: var(--notification-success);
+}
+
+/* მომხმარებლების სექციის სტილები */
+/* All styles related to Users section removed */
+
+/* მობილური ვერსიის სტილები */
+@media (max-width: 768px) {
+    .logo-desktop {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: block;
+    }
+
+    .admin-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    .nav-item {
+        padding: 0.75rem 1rem;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .user-card {
+        flex-direction: column;
+    }
+
+    .user-actions {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .user-actions button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .user-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+.notification.success {
+    background-color: var(--notification-success);
+}
+
+.notification.error {
+    background-color: var(--notification-error);
+}
+
+/* Switch toggle styles */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    border: solid black;
+    --background: white;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    transition: .5s;
+    border-radius: 30px;
+}
+
+.slider:before {
+
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 50%;
+    left: 10%;
+    bottom: 15%;
+    box-shadow: inset 8px -4px 0px 0px #fff000;
+    background: var(--background);
+    transition: .5s;
+}
+
+input:checked+.slider {
+    background-color: gray;
+}
+
+input:checked+.slider:before {
+    transform: translateX(100%);
+    box-shadow: inset 15px -4px 0px 15px #fff000;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Token Tester</title>
+    <link rel="stylesheet" href="./auth.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .test-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .test-btn:hover {
+            background-color: #45a049;
+        }
+
+        .danger-btn {
+            background-color: #f44336;
+        }
+
+        .danger-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="auth-section">
+        <div class="test-container">
+            <h2>Auth Token Testing Tool</h2>
+
+            <div class="test-section">
+                <h3>Current Token Status</h3>
+                <div>
+                    <button id="checkTokens" class="test-btn">Check Tokens</button>
+                    <div id="tokenStatus" class="result"></div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Test User Profile</h3>
+                <div>
+                    <button id="getUserProfile" class="test-btn">Get User Profile</button>
+                    <div id="profileResult" class="result"></div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Test Token Refresh</h3>
+                <div>
+                    <button id="invalidateToken" class="test-btn danger-btn">Invalidate Token</button>
+                    <button id="testRefresh" class="test-btn">Test Auto-Refresh</button>
+                    <div id="refreshResult" class="result"></div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Navigation</h3>
+                <a href="login.html"><button class="test-btn">Login Page</button></a>
+                <a href="register.html"><button class="test-btn">Register Page</button></a>
+                <a href="../main/index.html"><button class="test-btn">Main Page</button></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="../main/auth.js"></script>
+    <script src="../main/example-api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            document.getElementById('checkTokens').addEventListener('click', function () {
+                const accessToken = localStorage.getItem('access_token');
+                const refreshToken = localStorage.getItem('refresh_token');
+                const tokenStatus = document.getElementById('tokenStatus');
+
+                let html = '';
+                if (accessToken) {
+                    html += `<p class="success">Access Token: ${accessToken.substring(0, 20)}...${accessToken.length > 40 ? accessToken.substring(accessToken.length - 20) : ''}</p>`;
+                } else {
+                    html += `<p class="error">No Access Token found</p>`;
+                }
+
+                if (refreshToken) {
+                    html += `<p class="success">Refresh Token: ${refreshToken.substring(0, 20)}...${refreshToken.length > 40 ? refreshToken.substring(refreshToken.length - 20) : ''}</p>`;
+                } else {
+                    html += `<p class="error">No Refresh Token found</p>`;
+                }
+
+                tokenStatus.innerHTML = html;
+            });
+
+
+            document.getElementById('getUserProfile').addEventListener('click', async function () {
+                const profileResult = document.getElementById('profileResult');
+                profileResult.innerHTML = '<p>Loading profile...</p>';
+
+                try {
+                    const userData = await getUserProfile();
+                    if (userData) {
+                        profileResult.innerHTML = `<p class="success">Profile loaded successfully!</p><pre>${JSON.stringify(userData, null, 2)}</pre>`;
+                    } else {
+                        profileResult.innerHTML = `<p class="error">Failed to load profile. Not authenticated or server error.</p>`;
+                    }
+                } catch (error) {
+                    profileResult.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+                }
+            });
+
+
+            document.getElementById('invalidateToken').addEventListener('click', function () {
+                const currentToken = localStorage.getItem('access_token');
+                if (currentToken) {
+                    localStorage.setItem('access_token', 'invalid_token_for_testing');
+                    document.getElementById('refreshResult').innerHTML = '<p>Token invalidated. Now test the auto-refresh.</p>';
+                } else {
+                    document.getElementById('refreshResult').innerHTML = '<p class="error">No token to invalidate. Please login first.</p>';
+                }
+            });
+
+            // Test Refresh Button
+            document.getElementById('testRefresh').addEventListener('click', async function () {
+                const refreshResult = document.getElementById('refreshResult');
+                refreshResult.innerHTML = '<p>Testing token refresh...</p>';
+
+                try {
+                    const userData = await getUserProfile();
+                    if (userData) {
+                        refreshResult.innerHTML = `
+                            <p class="success">Token refresh worked! Profile loaded with refreshed token.</p>
+                            <pre>${JSON.stringify(userData, null, 2)}</pre>
+                        `;
+                    } else {
+                        refreshResult.innerHTML = `<p class="error">Refresh failed. Not authenticated.</p>`;
+                    }
+                } catch (error) {
+                    refreshResult.innerHTML = `<p class="error">Error during refresh: ${error.message}</p>`;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

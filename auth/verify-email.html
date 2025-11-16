@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP RAILWAY | Email Verification</title>
+    <link rel="stylesheet" href="./auth.css">
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <section class="auth-section">
+        <div class="auth-container">
+            <h2>ელ-ფოსტის ვერიფიკაცია</h2>
+            <div id="message-box" class="message-box info">მიმდინარეობს ვერიფიკაცია...</div>
+
+            <div id="verify-success" class="verify-result" style="display: none;">
+                <i class="fas fa-check-circle verify-icon success"></i>
+                <h3>ელ-ფოსტა წარმატებით დადასტურდა!</h3>
+                <p>თქვენი ანგარიში ახლა აქტიურია. შეგიძლიათ შეხვიდეთ სისტემაში.</p>
+                <a href="login.html?verified=success" class="auth-btn">შესვლა</a>
+            </div>
+
+            <div id="verify-error" class="verify-result" style="display: none;">
+                <i class="fas fa-times-circle verify-icon error"></i>
+                <h3>ვერიფიკაცია ვერ მოხერხდა</h3>
+                <p id="error-message">ბმული არასწორია ან ვადაგასულია.</p>
+                <a href="login.html" class="auth-btn">შესვლაზე დაბრუნება</a>
+                <div class="resend-container">
+                    <p>ვერიფიკაციის ახალი ბმულის გაგზავნა</p>
+                    <div class="resend-form">
+                        <input type="email" id="resend-email" placeholder="თქვენი ელ-ფოსტა">
+                        <button id="resend-btn">გაგზავნა</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="../main/auth.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageBox = document.getElementById("message-box");
+            const verifySuccess = document.getElementById("verify-success");
+            const verifyError = document.getElementById("verify-error");
+            const errorMessage = document.getElementById("error-message");
+            const resendBtn = document.getElementById("resend-btn");
+
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+
+            if (!token) {
+                showError("ვერიფიკაციის ტოკენი არ არის მითითებული.");
+                return;
+            }
+
+
+            verifyEmail(token);
+
+
+            resendBtn.addEventListener("click", async function () {
+                const email = document.getElementById("resend-email").value.trim();
+                if (!email) {
+                    alert("გთხოვთ შეიყვანოთ ელ-ფოსტის მისამართი");
+                    return;
+                }
+
+                await resendVerificationEmail(email);
+            });
+
+            async function verifyEmail(token) {
+                try {
+                    const apiUrl = `https://api.everrest.educata.dev/auth/verify-email?token=${token}`;
+                    const response = await fetch(apiUrl, {
+                        method: "GET",
+                        headers: {
+                            "Accept": "application/json",
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        showSuccess();
+                    } else {
+                        showError(data.message || data.error || "ვერიფიკაცია ვერ მოხერხდა. ბმული არასწორია ან ვადაგასულია.");
+                    }
+                } catch (error) {
+                    console.error("Verification error:", error);
+                    showError("სერვერთან დაკავშირების პრობლემა. გთხოვთ სცადოთ მოგვიანებით.");
+                }
+            }
+
+            async function resendVerificationEmail(email) {
+                try {
+                    const resendBtn = document.getElementById("resend-btn");
+                    resendBtn.disabled = true;
+                    resendBtn.textContent = "იგზავნება...";
+
+                    const apiUrl = "https://api.everrest.educata.dev/auth/resend-verification";
+                    const response = await fetch(apiUrl, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                        },
+                        body: JSON.stringify({ email })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert("ვერიფიკაციის ბმული თავიდან გაიგზავნა თქვენს ელ-ფოსტაზე.");
+                    } else {
+                        alert(`შეცდომა: ${data.message || data.error || "ვერიფიკაციის ბმულის თავიდან გაგზავნა ვერ მოხერხდა."}`);
+                    }
+                } catch (error) {
+                    console.error("Resend verification error:", error);
+                    alert(`სერვერთან დაკავშირების პრობლემა: ${error.message}`);
+                } finally {
+                    resendBtn.disabled = false;
+                    resendBtn.textContent = "გაგზავნა";
+                }
+            }
+
+            function showSuccess() {
+                messageBox.style.display = "none";
+                verifySuccess.style.display = "block";
+                verifyError.style.display = "none";
+
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect');
+
+
+                const loginButton = document.querySelector('#verify-success .auth-btn');
+                if (redirectUrl) {
+                    loginButton.href = `login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+                }
+            }
+
+            function showError(message) {
+                messageBox.style.display = "none";
+                verifySuccess.style.display = "none";
+                verifyError.style.display = "block";
+                errorMessage.textContent = message;
+            }
+        });
+    </script>
+</body>
+
+</html>

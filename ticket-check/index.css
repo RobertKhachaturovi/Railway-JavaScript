@@ -1,0 +1,450 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 30px 32px;
+
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+header.scrolled {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-buttons .btn {
+    width: 280px;
+    margin: 0;
+}
+
+.right-icon {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.right-icon .btn {
+    margin: 0;
+    width: auto;
+    min-width: 120px;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.logo-desktop img {
+    display: block;
+    height: 55px;
+}
+
+.logo-desktop a {
+    cursor: default;
+}
+
+.btn {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background: transparent;
+    border: 2px solid rgb(56, 58, 181);
+    background-color: rgb(40, 63, 191);
+    width: auto;
+    min-width: 280px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    transition: color 0.3s, border-color 0.3s;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+.btn::before {
+    content: "";
+    background-color: rgb(69, 89, 202);
+    position: absolute;
+    inset: 0;
+    transform: scale(0, 1);
+    transform-origin: center;
+    transition: all 1s;
+    z-index: -1;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    color: white;
+    border-color: transparent;
+}
+
+.btn:hover::before {
+    transform: scale(1, 1);
+}
+
+.ticket-check-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: 100px auto 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+
+}
+
+.ticket-number {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ticket-number label {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+.input-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.ticket-number input {
+    padding: 15px;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 4px;
+    font-size: 16px;
+    flex: 1;
+}
+
+.ticket-number button {
+    padding: 15px 30px;
+    border-radius: 5px;
+    background-color: rgb(40, 63, 191);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ticket-number button:hover {
+    background-color: #357ab8;
+}
+
+.ticket-result-container {
+    margin-top: 20px;
+}
+
+.result-message {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.result-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.result-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.result-message.loading {
+    background-color: #e2e3e5;
+    color: #383d41;
+    border: 1px solid #d6d8db;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result-message.loading i {
+    margin-right: 8px;
+    color: rgb(40, 63, 191);
+}
+
+.ticket-details {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    display: block;
+    clear: both;
+}
+
+.train-logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: auto;
+    z-index: 5;
+}
+
+.train-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.ticket-header-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+.registration-content {
+    padding-top: 70px;
+    position: relative;
+}
+
+.schedule-info {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.schedule-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 15px;
+}
+
+.schedule-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.schedule-value {
+    color: #212529;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.info-value {
+    color: #212529;
+}
+
+.payment-info {
+    margin: 20px 0;
+}
+
+.payment-info h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.passenger-list {
+    margin: 20px 0;
+}
+
+.passenger-list h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.passenger-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.passenger-header h5 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.print-ticket {
+    background-color: rgb(40, 63, 191);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.print-ticket:hover {
+    background-color: rgb(56, 58, 181);
+}
+
+.cancel-ticket {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.cancel-ticket:hover {
+    background-color: #c0392b;
+}
+
+.ticket-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+footer {
+    width: 100%;
+    height: 70vh;
+    background-color: rgb(244, 245, 251);
+    position: relative;
+}
+
+footer::after {
+    content: '';
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1.2px;
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
+}
+
+.footer-line-text {
+    position: relative;
+    padding-top: 150px;
+    padding-left: 70px;
+    color: #333;
+    font-size: 16px;
+}
+
+.footer-line-text span {
+    color: rgb(69, 47, 243);
+}
+
+@media print {
+
+    .header,
+    .ticket-number,
+    .result-message,
+    .print-ticket,
+    footer {
+        display: none;
+    }
+
+    .ticket-check-wrapper {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .ticket-details {
+        box-shadow: none;
+    }
+
+    body {
+        background-color: white;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-desktop {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: block;
+    }
+
+    .logo-mobile img {
+        height: 40px;
+    }
+
+    .ticket-check-wrapper {
+        margin-top: 80px;
+        width: 95%;
+    }
+
+    .input-button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .schedule-row,
+    .info-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>პროფილი | STEP RAILWAY</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="../main/index.css">
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <!-- Desktop logo -->
+                <a href="../main/index.html" class="logo-desktop">
+                    <img src="../main/image/logo.png" alt="desktop logo">
+                </a>
+
+                <!-- Mobile logo -->
+                <a href="../main/index.html" class="logo-mobile">
+                    <img src="../main/image/favicon.png" alt="mobile logo">
+                </a>
+            </div>
+            <div>
+                <div class="right-icon">
+                    <div class="header-buttons">
+                        <button id="languageSwitch" class="language-btn">
+                            <i class="fas fa-globe"></i>
+                            en
+                        </button>
+                        <a href="../ticket-check/index.html">
+                            <button class="btn">
+                                <span>ბილეთის შემოწმება/დაბრუნება</span>
+                                <span></span>
+                            </button>
+                        </a>
+                        <a href="../main/index.html" class="home-link">
+                            <button class="btn home-btn">
+                                <i class="fas fa-home"></i>
+                                <span>მთავარი</span>
+                            </button>
+                        </a>
+                        <button id="logoutButton" class="btn logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> გასვლა
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h1>პროფილის გვერდი</h1>
+            </div>
+
+            <div class="profile-photo-section">
+                <div class="selected-avatar">
+                    <img id="current-avatar" src="./6522516.png" alt="Selected Avatar" />
+                </div>
+
+                <button id="show-avatars-btn">აირჩიე ავატარი</button>
+
+                <div id="avatar-container" class="avatar-options hidden">
+                    <img src="./6522516.png" alt="underfaind avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Kimberly&scale=130"
+                        alt="Kimberly avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Ryan&scale=130" alt="Ryan avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Brooklynn&scale=130"
+                        alt="Brooklynn avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Liam&scale=130" alt="Liam avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Andrea&scale=130" alt="Andrea avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Mackenzie&scale=130"
+                        alt="Mackenzie avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Christian&scale=130"
+                        alt="Christian avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Sadie&scale=130" alt="Sadie avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Mason&scale=130" alt="Mason avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Valentina&scale=130"
+                        alt="Valentina avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Wyatt&scale=130" alt="Wyatt avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Vivian&scale=130" alt="Vivian avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Eliza&scale=130" alt="Eliza avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Christopher&scale=130"
+                        alt="Christopher avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Jameson&scale=130"
+                        alt="Jameson avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Oliver&scale=130" alt="Oliver avatar" />
+                    <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Sara&scale=130" alt="Sara avatar" />
+                    <img src="https://api.dicebear.com/9.x/big-smile/svg?seed=Leah&flip=true&scale=110" alt="avatar" />
+                    <img src="https://api.dicebear.com/9.x/big-smile/svg?seed=Eden&flip=true&scale=110" alt="avatar" />
+                    <img src="https://api.dicebear.com/9.x/big-smile/svg?seed=Nolan&flip=true&scale=110"
+                        alt="avatar" /><img
+                        src="https://api.dicebear.com/9.x/big-smile/svg?seed=Emery&flip=true&scale=110"
+                        alt="avatar" /><img
+                        src="https://api.dicebear.com/9.x/big-smile/svg?seed=Christian&flip=true&scale=110"
+                        alt="avatar" /><img
+                        src="https://api.dicebear.com/9.x/big-smile/svg?seed=Robert&flip=true&scale=110" alt="avatar" />
+                    <button id="confirm-avatar-btn" class="confirm-btn">დადასტურება პროფილის</button>
+                </div>
+                <script>
+                    const showAvatarsBtn = document.getElementById('show-avatars-btn');
+                    const avatarContainer = document.getElementById('avatar-container');
+                    const currentAvatar = document.getElementById('current-avatar');
+                    const confirmBtn = document.getElementById('confirm-avatar-btn');
+                    let selectedSrc = null;
+
+
+                    showAvatarsBtn.addEventListener('click', () => {
+                        avatarContainer.classList.toggle('hidden');
+                        showAvatarsBtn.textContent = avatarContainer.classList.contains('hidden')
+                            ? 'აირჩიე ავატარი'
+                            : 'დამალე ავატარები';
+                    });
+
+
+                    avatarContainer.querySelectorAll('img').forEach(img => {
+                        img.addEventListener('click', (e) => {
+                            if (e.target === confirmBtn) return;
+
+                            avatarContainer.querySelectorAll('img').forEach(i => i.classList.remove('selected'));
+
+                            e.target.classList.add('selected');
+
+                            currentAvatar.src = e.target.src;
+
+                            selectedSrc = e.target.src;
+                        });
+                    });
+
+                    confirmBtn.addEventListener('click', () => {
+                        if (selectedSrc) {
+                            localStorage.setItem('selectedAvatar', selectedSrc);
+                            avatarContainer.classList.add('hidden');
+                            showAvatarsBtn.textContent = 'შეცვალე ავატარი';
+                        } else {
+                            alert('გთხოვ აირჩიე ავატარი!');
+                        }
+                    });
+
+
+                </script>
+
+
+
+            </div>
+
+            <div class="profile-info">
+                <div class="info-group">
+                    <h3>პირადი ინფორმაცია</h3>
+                    <div class="info-row">
+                        <span class="label">სახელი:</span>
+                        <span class="value" id="firstName">khachaturovi</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">გვარი:</span>
+                        <span class="value" id="lastName">robert</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">ტელეფონი:</span>
+                        <span class="value" id="phone">597004880</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">ასაკი:</span>
+                        <span class="value" id="age">21</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">სქესი:</span>
+                        <span class="value" id="gender">მამრობითი</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <h3>მისამართი</h3>
+                    <div class="info-row">
+                        <span class="label">მისამართი:</span>
+                        <span class="value" id="address">tbilisi</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">საფოსტო კოდი:</span>
+                        <span class="value" id="zipcode">1234</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="../main/auth.js"></script>
+    <script src="../main/example-api.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

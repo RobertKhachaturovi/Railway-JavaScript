@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP RAILWAY | ადმინისტრატორი</title>
+    <link rel="icon" href="../image/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="../index.html" class="logo-desktop">
+                    <img src="../image/logo.png" alt="desktop logo">
+                </a>
+                <a href="../index.html" class="logo-mobile">
+                    <img src="../image/favicon.png" alt="mobile logo">
+                </a>
+            </div>
+            <div class="admin-info">
+                <span class="admin-name">ადმინისტრატორი</span>
+                <button class="logout-btn">გასვლა</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <aside class="sidebar">
+            <nav class="admin-nav">
+                <button class="nav-item" data-section="contacts">
+                    <i class="fas fa-address-book"></i>
+                    დაკავშირების ინფორმაციები
+                </button>
+                <button class="nav-item" data-section="ratings">
+                    <i class="fas fa-star"></i>
+                    შეფასებები
+                </button>
+                <button class="nav-item" data-section="users">
+                    <i class="fas fa-users"></i>
+                    მომხმარებლები
+                </button>
+            </nav>
+        </aside>
+
+        <div class="content">
+
+            <section id="contacts" class="section">
+                <h2>დაკავშირების ინფორმაციები</h2>
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>ელ-ფოსტა</h3>
+                        <p>khachaturovirobert@gmail.com</p>
+                        <button class="edit-btn">შეცვლა</button>
+                    </div>
+                    <div class="info-card">
+                        <h3>ტელეფონი</h3>
+                        <p>+995 579 249 222</p>
+                        <button class="edit-btn">შეცვლა</button>
+                    </div>
+                    <div class="info-card">
+                        <h3>მისამართი</h3>
+                        <p>თბილისი, რუსთაველის გამზ. 1</p>
+                        <button class="edit-btn">შეცვლა</button>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="ratings" class="section">
+                <h2>მომხმარებლების შეფასებები</h2>
+                <div class="ratings-list">
+
+                </div>
+            </section>
+
+
+            <section id="users" class="section">
+                <h2>დარეგისტრირებული მომხმარებლები</h2>
+                <div class="users-list">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

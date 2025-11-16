@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP RAILWAY | Login</title>
+    <link rel="stylesheet" href="./auth.css">
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <section class="auth-section">
+        <div class="auth-container">
+            <h2>შესვლა</h2>
+            <div id="message-box" class="message-box"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">ელ-ფოსტა</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">პაროლი</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="auth-btn">შესვლა</button>
+            </form>
+
+            <div class="auth-links">
+                <p>არ გაქვთ ანგარიში? <a href="register.html">რეგისტრაცია</a></p>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="recovery-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>პაროლის აღდგენა</h3>
+            <div id="recovery-message" class="message-box"></div>
+
+            <form id="recovery-form">
+                <div class="form-group">
+                    <label for="recovery-email">ელ-ფოსტა</label>
+                    <input type="email" id="recovery-email" name="recovery-email" required>
+                </div>
+
+                <button type="submit" class="auth-btn">აღდგენა</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-line-text">
+        <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+    </div>
+    </footer>
+
+    <script src="../main/auth.js"></script>
+    <script src="./login.js"></script>
+</body>
+
+</html>

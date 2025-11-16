@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ka">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEP RAILWAY | MyLine</title>
+    <link rel="icon" href="../main/image/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <!-- Desktop logo -->
+                <a href="../main/index.html" class="logo-desktop">
+                    <img src="../main/image/logo.png" alt="desktop logo">
+                </a>
+
+                <!-- Mobile logo -->
+                <a href="../ticket-check/index.html" class="logo-mobile">
+                    <img src="../main/image/favicon.png" alt="mobile logo">
+                </a>
+            </div>
+
+            <div class="right-icon">
+                <div class="header-buttons">
+                    <button id="languageSwitch" class="language-btn">
+                        <i class="fas fa-globe"></i>
+                        en
+                    </button>
+                    <a href="../ticket-registration/index.html">
+                        <button class="btn">
+                            <span class="translation-key" data-key="check-ticket">ბილეთის შემოწმება/დაბრუნება</span>
+                        </button>
+                    </a>
+                    <button id="burgerMenuBtn" class="burger-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="burger-menu">
+        <div class="burger-menu-content">
+            <button class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="burger-menu-section">
+                <h3>მენიუ</h3>
+                <div class="burger-menu-items">
+                    <button id="darkModeToggle" class="burger-menu-item">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                    <div class="burger-menu-section">
+                        <h3>მთავარი მენიუ</h3>
+                        <button id="darkModeToggleBurger" class="btn">
+                            <i class="fas fa-moon"></i>
+                            <span class="translation-key" data-key="dark-mode">მუქი რეჟიმი</span>
+                        </button>
+                        <a href="../ticket-check/index.html">
+                            <button id="checkTicketBurger" class="btn">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span class="translation-key" data-key="check-ticket">ბილეთის შემოწმება</span>
+                            </button>
+                        </a>
+                        <a href="../aiChat/index.html">
+                            <button id="helpBurger" class="btn">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="translation-key" data-key="help">დახმარება</span>
+                            </button>
+                        </a>
+                        <button id="languageSwitchBurger" class="btn">
+                            <i class="fas fa-globe"></i>
+                            <span class="translation-key" data-key="language">ენა</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="train-selection">
+        <h2 class="translation-key" data-key="select-train">აირჩიეთ თქვენთვის სასურველი მატარებელი</h2>
+    </section>
+
+    <table id="trainList">
+        <thead>
+            <tr>
+                <th class="train-header translation-key" data-key="train">მატარებელი</th>
+                <th class="departure-header translation-key" data-key="departure">გამგზავრება</th>
+                <th class="arrival-header translation-key" data-key="arrival">ჩასვლა</th>
+                <th class="empty-header-left"></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <section class="ticket-registration" style="display: none;">
+        <div id="ticketDetails"></div>
+    </section>
+    <footer>
+        <div class="footer-line-text">
+            <p>©2023 <span>Step Railway.</span> ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+    <script src="./index.js"></script>
+</body>
+
+</html>
